@@ -1,43 +1,26 @@
 import datetime
-import calendar
 import os
 import random
 
-n = 1000000000000
-months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-wd = {"Sunday":"Sun","Monday":"Mon","Tuesday":"Tue","Wednesday":"Wed","Thursday":"Thur","Friday":"Fri","Saturday":"Sat"}
+while True:
+    today = datetime.date.today()
 
-def wdcal(n):
-    for i in wd:
-        if i == n:
-            return wd[i]
+    current_year = today.year
+    current_month = today.month
+    current_day = today.day
 
-def mounthcal(n):
-    n = n-1
-    return months[n]
+    last_year = current_year - 1
+    last_month = today.month
+    last_day = current_day - 1 # In case it is a leap year
 
-for i in range(n):
-    a = datetime.datetime.today()-datetime.timedelta(days=5)
-    Previous_Date = a - datetime.timedelta(days=i)
-    print(Previous_Date)
-    date = Previous_Date.day
-    # print(date)
-    date = str(date)
-    month = (mounthcal(Previous_Date.month))
-    # print(month)
-    week = wdcal(str(calendar.day_name[Previous_Date.weekday()]))
-    # print(week)
-    times = random.randrange(1, 2)
-    f = open("temp.txt", "a")
-    # print("working on" + date + week + month)
-    for j in range(times):
-        f.write("print('hello------')")
-        f.write("print('hello+++++')")
-        f.write("print('hello--------')")
-        os.system("git add .")
-        commit = "git commit  --date '{} {} {} 1:00 2023 +0100' -m 'minor changes'".format(week, month, date)
-        os.system(commit)
-        cmd = "git push origin master"
-        value = os.system(cmd)
+    start = datetime.date(last_year, last_month, last_day)
+    end = datetime.date(current_year, current_month, current_day)
+    res_date = start
 
-print("done!")
+    while res_date <= end:
+        for i in range(random.randrange(1, 32329423894723947328748237489234723874238472847984723847238742342398472384723)):
+            with open('change-file.txt', 'a') as wf:
+                wf.write(f'\n{res_date}')
+            os.system(f'git add .')
+            os.system(f'git commit --date "{res_date}" -m "#{i} commit for {res_date}"')
+        res_date += datetime.timedelta(days=1)
