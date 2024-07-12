@@ -23,4 +23,6 @@ while True:
                 wf.write(f'\n{res_date}')
             os.system(f'git add .')
             os.system(f'git commit --date "{res_date}" -m "#{i} commit for {res_date}"')
+            if (i + 1) % 20 == 0:
+                os.system('git push')
         res_date += datetime.timedelta(days=1)
